@@ -8,5 +8,6 @@ UserSettings/
 
 *.csproj
 *.sln
-
+packages-lock.json
 TextMesh Pro User Guide 2016.pdf
+TextMesh Pro User Guide 2016.pdf.meta
