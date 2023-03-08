@@ -5,6 +5,12 @@ using UnityEngine.InputSystem;
 
 namespace Drawing
 {
+    public enum EditMode
+    {
+        SelectMode,
+        InpaintMode,
+    }
+
     public class Artboard : MonoBehaviour, IPointerClickHandler, IPointerMoveHandler, IBeginDragHandler, IDragHandler,
         IScrollHandler
     {
@@ -13,12 +19,15 @@ namespace Drawing
         public TaskArea taskTemplate;
         public Transform taskGroup;
 
+        public EditMode editMode = EditMode.SelectMode;
+
         private bool spaceMode = false;
 
         /// <summary>
         /// Relative position of mouse in the canvas
         /// </summary>
         private Vector2 mousePosition = Vector2.zero;
+
 
         // Start is called before the first frame update
         private void Start()
@@ -43,11 +52,15 @@ namespace Drawing
             var mouse = Mouse.current;
             var keyboard = Keyboard.current;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                this.transform as RectTransform,
+                transform as RectTransform,
                 mouse.position.ReadValue(),
                 canvas.worldCamera,
                 out var realPos
             );
+            if (keyboard.escapeKey.wasPressedThisFrame)
+            {
+                editMode = EditMode.SelectMode;
+            }
 
             mousePosition = realPos + new Vector2(1920, 1080) / 2;
             spaceMode = keyboard.spaceKey.isPressed;
@@ -72,6 +85,7 @@ namespace Drawing
         {
             var go = Instantiate(taskTemplate, taskGroup);
             go.MoveTo(mousePosition);
+            go.ResetSize(selectArea.size);
         }
 
         public void OnBeginDrag(PointerEventData eventData)

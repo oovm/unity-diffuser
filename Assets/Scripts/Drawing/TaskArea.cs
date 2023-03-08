@@ -10,6 +10,17 @@ namespace Drawing
         private RectTransform rectTransform;
         public TextMeshProUGUI sizeText;
 
+        /// <summary>
+        /// <span style="color: #5050FF;">InprogressColor</span>
+        /// </summary>
+        private Color InprogressColor = new(0.5f, 0.5f, 1f, 1f);
+
+        /// <summary>
+        /// <span style="color: #50FF50;">ReadyColor</span>
+        /// </summary>
+        private Color ReadyColor = new(0.5f, 1f, 0.5f, 1f);
+
+
         private void Awake()
         {
             rectTransform = GetComponent<RectTransform>();

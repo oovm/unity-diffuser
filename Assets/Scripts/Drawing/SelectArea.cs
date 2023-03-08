@@ -9,6 +9,11 @@ namespace Drawing
     {
         private RectTransform rectTransform;
         public TextMeshProUGUI sizeText;
+        
+        public float size
+        {
+            get => rectTransform.sizeDelta.x;
+        }
 
         private void Awake()
         {
