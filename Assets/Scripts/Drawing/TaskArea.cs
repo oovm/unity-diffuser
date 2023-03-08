@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace Drawing
 {
-    public class SelectArea : MonoBehaviour
+    public class TaskArea : MonoBehaviour
     {
         private RectTransform rectTransform;
         public TextMeshProUGUI sizeText;
@@ -19,6 +19,11 @@ namespace Drawing
         public void MoveTo(Vector2 position)
         {
             transform.position = position;
+        }
+
+        public void ChangeColor(Color color)
+        {
+            sizeText.color = color;
         }
 
         public void Scale(float scrollDeltaY)
