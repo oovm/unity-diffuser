@@ -23,8 +23,7 @@ namespace WebSocket
             websocket = new NativeWebSocket.WebSocket(url);
             websocket.OnOpen += () => { Debug.Log("Connection open!"); };
             websocket.OnError += (e) => { Debug.Log("Error! " + e); };
-            websocket.OnClose += (e) => { Debug.Log("Connection closed!"); };
-            websocket.OnMessage += (bytes) =>
+            websocket.OnClose += (e) => { Debug.Log("Connection closed!"); }; websocket.OnMessage += (bytes) =>
             {
                 Debug.Log("OnMessage!");
                 Debug.Log(bytes);
